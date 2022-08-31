@@ -1,0 +1,64 @@
+:root {
+  --primary: rgb(0, 0, 0);
+}
+
+.btn {
+  padding: 8px 20px;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  padding: 8px 20px;
+  border: 1px solid var(--primary);
+  transition: all 0.3s ease-out;
+  border-radius: 5px;
+}
+
+.btn--medium {
+  padding: 8px 20px;
+  font-size: 18px;
+}
+
+.btn--large {
+  padding: 12px 26px;
+  font-size: 20px;
+}
+
+.btn--large:hover,
+.btn--medium:hover {
+  transition: all 0.3s ease-out;
+  background: #b99a5f;
+  border: 1px solid #b99a5f;
+  color: #2b2b2b;
+  transition: 250ms;
+}
+
+.btn-booking {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.btn-pay {
+  background: #b99a5f;
+  border: 1px solid #b99a5f;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.btn-pay:hover {
+  background: #947a4b;
+  border: 1px solid #947a4b;
+  color: #ffffff;
+}
