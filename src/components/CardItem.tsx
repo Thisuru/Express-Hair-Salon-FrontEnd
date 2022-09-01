@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button } from "./Button";
+import { CustomButton } from "./CustomButton";
 
 function CardItem(props: any) {
   return (
@@ -12,12 +12,12 @@ function CardItem(props: any) {
           <div className="services-area__item__info">
             <h5 className="services-area__item__title">{props.title}</h5>
             <p className="services-area__item__text"> {props.text}</p>
-            <Button
+            <CustomButton
               className="btn"
               onClick={console.log("hey")}
               otherClasses="services-area__item-btn">
               MAKE A RESERVATION
-            </Button>
+            </CustomButton>
           </div>
         </Link>
       </li>

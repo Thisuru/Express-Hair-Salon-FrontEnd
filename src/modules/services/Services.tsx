@@ -1,6 +1,6 @@
 import "../../App.css";
 import { Form, Field, Formik } from "formik";
-import { Col, Row, Form as AntForm } from "antd";
+import { Col, Row, Form as AntForm, DatePicker, DatePickerProps, TimePicker } from "antd";
 import {
   CustomDatePicker,
   CustomInput,
@@ -9,13 +9,20 @@ import {
 } from "../../components/makeFields/CustomFormFeilds";
 import * as Yup from "yup";
 import moment from "moment";
-import { Button } from "../../components/Button";
+import { CustomButton } from "../../components/CustomButton";
 import axios from "axios";
+import { useState } from "react";
 
 export default function Services() {
+  const [selectedService, setSelectedService] = useState<any>(null);
+  const [selectedDate, setSelectedDate] = useState<any>(null);
+  const [selectedTime, setSelectedTime] = useState<any>(null);
 
-  const submitHandler = () => {
-    axios.post('http://localhost:5000/booking')
+  const submitHandler = (data: any) => {
+    axios.post('http://localhost:5000/booking', { 
+      price: selectedService?.cost,
+      service: selectedService?.label
+    })
      .then((res) => {
         if(res.data.url){
           window.open( res.data.url, '_blank');
@@ -34,6 +41,26 @@ export default function Services() {
     email: Yup.string().required("Required").max(32, "Maximum length exceed")
   });
 
+  const serviceChangeHandler = (data: any, setFieldValue: any) => {
+    console.log(
+      "🚀 ~ Service Selected : ",
+      data
+    );
+    setSelectedService(data);
+    setFieldValue("service", data?.value);
+  };
+
+  const datePickerHandler: DatePickerProps["onChange"] = (date, dateString) => {
+    console.log(date, dateString);
+    setSelectedDate(dateString);
+  };
+
+  const timePickerHandler = (time: any, timeString: string) => {
+    console.log(time, timeString);
+    setSelectedTime(timeString);
+  };
+
+
   return (
     <div className="salonServices">
       <div className="form-container">
@@ -42,21 +69,36 @@ export default function Services() {
           // initialValues={registerInfo?.data}
           // validationSchema={validationSchema}
           initialValues={{
-            firstName: '',
-            lastName: '',
-            email: '',
-            date: '',
-            consumerUidType: ''
+            service: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            date: "",
+            consumerUidType: "",
           }}
           validationSchema={validationSchema}
           onSubmit={(values: any, props) => {
             console.log("🚀 ~ file: Services.tsx ~ line 15 ~ Services ~ values", values);
+            const dataDto = {
+              ...values,
+              selectedDate: selectedDate,
+              selectedTime: selectedTime,
+            };
+            console.log(
+              "🚀 ~ All Form Value Obj: ",
+              dataDto
+            );
+
+            console.log("Email Vital: ", dataDto.email);
+            
+
+            submitHandler(dataDto);
           }}>
           {({ errors, touched, values, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
             return (
               <div className="booking-form">
                 <h3>Booking details</h3>
-                <Form action="/booking" method="POST" onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                   <Row>
                     <Col md={{ span: 24 }} xs={{ span: 24 }}>
                       <AntForm.Item
@@ -65,7 +107,11 @@ export default function Services() {
                         <Field
                           name="service"
                           component={CustomSelect}
+                          value={selectedService}
                           setFieldValue={setFieldValue}
+                          serviceChangeHandler={(data: any) =>
+                            serviceChangeHandler(data, setFieldValue)
+                          }
                         />
                       </AntForm.Item>
                     </Col>
@@ -137,12 +183,13 @@ export default function Services() {
                         validateStatus={
                           touched.consumerUid && errors.consumerUid ? "error" : "success"
                         }>
-                        <Field
+                        {/* <Field
                           name="date"
                           component={CustomDatePicker}
                           placeholder={"Date"}
                           maxLength="32"
-                        />
+                        /> */}
+                        <DatePicker onChange={datePickerHandler} />
                       </AntForm.Item>
                     </Col>
                     <Col md={{ span: 12 }} xs={{ span: 12 }} style={{ paddingLeft: "5px" }}>
@@ -161,31 +208,36 @@ export default function Services() {
                         validateStatus={
                           touched.consumerUid && errors.consumerUid ? "error" : "success"
                         }>
-                        <Field
+                        {/* <Field
                           name="consumerUidType"
                           component={CustomTimePicker}
                           setFieldValue={setFieldValue}
                           placeholder={"Time"}
                           // defaultOpenValue={moment('00:00:00', 'HH:mm:ss')}
+                        /> */}
+                        <TimePicker
+                          onChange={timePickerHandler}
+                          defaultValue={moment("00:00:00", "HH:mm:ss")}
                         />
                       </AntForm.Item>
                     </Col>
                     <Col className="total">
-                      <h3>Total: USD 25.00</h3>
+                      {selectedService && 
+                      (<h3>Total: USD {selectedService?.cost}</h3>)}
                     </Col>
                   </Row>
 
                   <Row>
                     <Col span={24}>
                       <AntForm.Item>
-                        <Button
+                        <CustomButton
                           buttonStyle="btn--primary"
                           otherClasses="btn-pay"
                           htmlType="submit"
-                          onClick={submitHandler}
+                          // onClick={submitHandler}
                         >
                           Pay Now
-                        </Button>
+                        </CustomButton>
                       </AntForm.Item>
                     </Col>
                   </Row>

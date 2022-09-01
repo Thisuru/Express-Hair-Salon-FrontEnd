@@ -1,6 +1,6 @@
 import { Col, Row } from "antd";
 import "../App.css";
-import { Button } from "./Button";
+import { CustomButton } from "./CustomButton";
 import "./HeroSection.css";
 
 function HeroSection() {
@@ -18,14 +18,14 @@ function HeroSection() {
                 each guest with a unique & customizable result. For your convenience, Schedule your
                 reservation today!
               </p>
-              <Button
+              <CustomButton
                 className="btn"
                 buttonStyle="btn--outline"
                 buttonSize="btn--medium"
                 onClick={console.log("hey")}
                 otherClasses="left-side-area-btn">
                 Book now
-              </Button>
+              </CustomButton>
             </div>
           </div>
         </Col>

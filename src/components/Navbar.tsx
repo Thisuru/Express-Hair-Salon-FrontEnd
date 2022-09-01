@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "./Button";
+import { CustomButton } from "./CustomButton";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
@@ -62,7 +62,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--primary" otherClasses="btn-booking">Booking</Button>}
+          {CustomButton && <CustomButton buttonStyle="btn--primary" otherClasses="btn-booking">Booking</CustomButton>}
         </div>
       </nav>
     </>

@@ -26,14 +26,16 @@ export const CustomNumberInput = ({
 };
 
 const SalonServices = [
-  { label: "Hair", value: 1 },
-  { label: "Facial", value: 2 },
-  { label: "CleanUp", value: 3 }
+  { label: "Hair", value: 1, cost: "20" },
+  { label: "Facial", value: 2, cost: "25" },
+  { label: "CleanUp", value: 3, cost: "30" },
 ];
 
 export const CustomSelect = ({
   field,
   title,
+  value,
+  serviceChangeHandler,
   form: { touched, errors, values },
   ...props
 }: any) => {
@@ -41,10 +43,16 @@ export const CustomSelect = ({
     <Select
       placeholder="Select Type"
       optionFilterProp="children"
-      value={values.consumerUidType}
+      // value={values.consumerUidType}
+      value={value}
       onChange={(value) => {
-        props.setFieldValue("consumerUidType", value);
-        props.setFieldValue("consumerUid", "");
+        console.log('Dropdown Value number: ', value);
+        // props.setFieldValue("consumerUidType", value);
+        // props.setFieldValue("consumerUid", "");
+
+        let obj = SalonServices.find((o) => o.value === value);
+        console.log("🚀 Dropdown Selected Val: ", obj);
+        serviceChangeHandler(obj);
       }}
       filterOption={(input, option) =>
         (option!.children as unknown as string).toLowerCase().includes(input.toLowerCase())
