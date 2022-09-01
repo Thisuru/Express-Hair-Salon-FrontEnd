@@ -43,6 +43,13 @@ const routes = [
     exact: true,
     component: Views.BookingView,
   },
+  // ---------------ServiceDetails---------
+  {
+    path: "/serviceDetails",
+    layout: DetailLayout,
+    exact: true,
+    component: Views.ServiceDetailsView,
+  },
   //   //should be last one
   //   {
   //     layout: PageNotFoundLayout,

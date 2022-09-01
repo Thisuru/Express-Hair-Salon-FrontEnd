@@ -27,21 +27,21 @@ function Services() {
               title="Haircut"
               text="Set Sail in the Atlantic Ocean visiting Uncharted Waters"
               label="Mystery"
-              path="/services-area"
+              path="/serviceDetails"
             />
             <CardItem
               src="images/img_svs_2.svg"
               title="Hair Styling"
               text="Experience Football on Top of the Himilayan Mountains"
               label="Adventure"
-              path="/products"
+              path="/serviceDetails"
             />
             <CardItem
               src="images/img_svs_3.svg"
               title="Makeup"
               text="Ride through the Sahara Desert on a guided camel tour"
               label="Adrenaline"
-              path="/sign-up"
+              path="/serviceDetails"
             />
           </ul>
         </div>

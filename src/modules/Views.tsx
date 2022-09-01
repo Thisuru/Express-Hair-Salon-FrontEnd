@@ -3,6 +3,7 @@ import Booking from "./booking/Booking";
 import Services from "./services/Services";
 import About from "./about/about";
 import Shop from "./shop/Shop";
+import ServiceDetails from "./serviceDetails/ServiceDetails";
 
 export default {
   HomeView: Home,
@@ -10,4 +11,5 @@ export default {
   ServicesView : Services,
   ShopView : Shop,
   BookingView : Booking,
+  ServiceDetailsView: ServiceDetails
 };

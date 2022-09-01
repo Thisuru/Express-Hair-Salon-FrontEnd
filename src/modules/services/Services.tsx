@@ -12,13 +12,20 @@ import moment from "moment";
 import { CustomButton } from "../../components/CustomButton";
 import axios from "axios";
 import { useState } from "react";
+import HTTPClient from "../../utils/HTTPClient";
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState<any>(null);
   const [selectedDate, setSelectedDate] = useState<any>(null);
   const [selectedTime, setSelectedTime] = useState<any>(null);
 
-  const submitHandler = (data: any) => {
+  const submitHandler = async (data: any) => {
+
+  //  const test = await HTTPClient.Post('http://localhost:5000/booking', {
+  //     price: selectedService?.cost,
+  //     service: selectedService?.label
+  //   })
+  
     axios.post('http://localhost:5000/booking', { 
       price: selectedService?.cost,
       service: selectedService?.label
