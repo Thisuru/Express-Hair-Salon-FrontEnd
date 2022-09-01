@@ -14,7 +14,7 @@ export const setAuth = () => {
     headers: {
       "Content-Type": "application/json",
     },
-    withCredentials: true,
+    withCredentials: false,
   });
 
   instance.interceptors.response.use(

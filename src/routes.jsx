@@ -37,12 +37,12 @@ const routes = [
     component: Views.ShopView,
   },
   // ---------------Booking---------
-  {
-    path: "/booking",
-    layout: DefaultLayout,
-    exact: true,
-    component: Views.BookingView,
-  },
+  // {
+  //   path: "/booking",
+  //   layout: DefaultLayout,
+  //   exact: true,
+  //   component: Views.BookingView,
+  // },
   // ---------------ServiceDetails---------
   {
     path: "/serviceDetails",

@@ -26,37 +26,27 @@ export const CustomNumberInput = ({
 };
 
 const SalonServices = [
-  { label: "Hair", value: 1, cost: "20" },
-  { label: "Facial", value: 2, cost: "25" },
-  { label: "CleanUp", value: 3, cost: "30" },
+  { label: "Hair", value: '{"name":"Hair","cost":20}'},
+  { label: "Facial", value: '{"name":"Facial","cost":25}'},
+  { label: "CleanUp", value: '{"name":"CleanUp","cost":30}'},
 ];
 
 export const CustomSelect = ({
-  field,
-  title,
   value,
   serviceChangeHandler,
-  form: { touched, errors, values },
+  onChange,
+  name,
   ...props
 }: any) => {
   return (
     <Select
       placeholder="Select Type"
       optionFilterProp="children"
-      // value={values.consumerUidType}
       value={value}
-      onChange={(value) => {
-        console.log('Dropdown Value number: ', value);
-        // props.setFieldValue("consumerUidType", value);
-        // props.setFieldValue("consumerUid", "");
 
-        let obj = SalonServices.find((o) => o.value === value);
-        console.log("🚀 Dropdown Selected Val: ", obj);
-        serviceChangeHandler(obj);
-      }}
-      filterOption={(input, option) =>
-        (option!.children as unknown as string).toLowerCase().includes(input.toLowerCase())
-      }>
+      onChange={(e) => onChange({target: {name, value: e}})}
+      >
+
       {SalonServices.map((op: any, i: any) => {
         return (
           <Option key={i} value={op.value}>
@@ -69,26 +59,21 @@ export const CustomSelect = ({
 };
 
 export const CustomDatePicker = ({
-  field,
-
-  title,
-
-  form: { touched, errors },
-
+  onChange,
+  name,
   ...props
 }: any) => {
-  // return <InputNumber {...field} {...props} />
-  return <DatePicker {...field} {...props} />;
+  return <DatePicker 
+  onChange={(e) => onChange({target: {name, value: e}})}
+  {...props} />;
 };
 
 export const CustomTimePicker = ({
-  field,
-
-  title,
-
-  form: { touched, errors },
-
+  onChange,
+  name,
   ...props
 }: any) => {
-  return <TimePicker {...field} {...props} />;
+  return <TimePicker 
+  onChange={(e) => onChange({target: {name, value: e}})}
+  {...props} />;
 };

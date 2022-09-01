@@ -13,29 +13,40 @@ import { CustomButton } from "../../components/CustomButton";
 import axios from "axios";
 import { useState } from "react";
 import HTTPClient from "../../utils/HTTPClient";
+import { BOOKING } from "../../utils/EndPoints";
 
 export default function Services() {
-  const [selectedService, setSelectedService] = useState<any>(null);
-  const [selectedDate, setSelectedDate] = useState<any>(null);
-  const [selectedTime, setSelectedTime] = useState<any>(null);
+  // const [selectedService, setSelectedService] = useState<any>(null);
 
   const submitHandler = async (data: any) => {
 
-  //  const test = await HTTPClient.Post('http://localhost:5000/booking', {
-  //     price: selectedService?.cost,
-  //     service: selectedService?.label
-  //   })
+    try {
+
+      const res = await HTTPClient.Post(BOOKING, {
+        price: data.service,
+        // service: selectedService?.label,
+        data: data
+      })
+
+      if(res?.data.url){
+        window.open( res.data.url, '_blank');
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
   
-    axios.post('http://localhost:5000/booking', { 
-      price: selectedService?.cost,
-      service: selectedService?.label
-    })
-     .then((res) => {
-        if(res.data.url){
-          window.open( res.data.url, '_blank');
-        }
-     })
-     .catch((err) => console.log(err));
+    // axios.post('http://localhost:5000/booking', { 
+    //   price: data.service,
+    //   data: data
+    // })
+    //  .then((res) => {
+    //     if(res.data.url){
+    //       window.open( res.data.url, '_blank');
+    //     }
+    //  })
+    //  .catch((err) => console.log(err));
+    
   };
 
   const validationSchema = Yup.object({
@@ -48,24 +59,14 @@ export default function Services() {
     email: Yup.string().required("Required").max(32, "Maximum length exceed")
   });
 
-  const serviceChangeHandler = (data: any, setFieldValue: any) => {
-    console.log(
-      "🚀 ~ Service Selected : ",
-      data
-    );
-    setSelectedService(data);
-    setFieldValue("service", data?.value);
-  };
+  const dropdownVal = (value : any) => {
+    
+    const obj = JSON.parse(value.service);
+    console.log("dropdownVal", obj);
+    console.log("label", obj.cost);
 
-  const datePickerHandler: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
-    setSelectedDate(dateString);
-  };
-
-  const timePickerHandler = (time: any, timeString: string) => {
-    console.log(time, timeString);
-    setSelectedTime(timeString);
-  };
+    return obj.cost;
+  }
 
 
   return (
@@ -73,8 +74,6 @@ export default function Services() {
       <div className="form-container">
         <Formik
           enableReinitialize={true}
-          // initialValues={registerInfo?.data}
-          // validationSchema={validationSchema}
           initialValues={{
             service: "",
             firstName: "",
@@ -84,23 +83,14 @@ export default function Services() {
             consumerUidType: "",
           }}
           validationSchema={validationSchema}
+
           onSubmit={(values: any, props) => {
-            console.log("🚀 ~ file: Services.tsx ~ line 15 ~ Services ~ values", values);
-            const dataDto = {
-              ...values,
-              selectedDate: selectedDate,
-              selectedTime: selectedTime,
-            };
-            console.log(
-              "🚀 ~ All Form Value Obj: ",
-              dataDto
-            );
+            console.log("🚀 ~ All Form Value Obj", values);
 
-            console.log("Email Vital: ", dataDto.email);
-            
-
-            submitHandler(dataDto);
+            dropdownVal(values)
+            // submitHandler(values);
           }}>
+            
           {({ errors, touched, values, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
             return (
               <div className="booking-form">
@@ -111,15 +101,20 @@ export default function Services() {
                       <AntForm.Item
                         help={touched.service && errors.service ? errors.service.toString() : ""}
                         validateStatus={touched.service && errors.service ? "error" : "success"}>
-                        <Field
+                        {/* <Field
                           name="service"
                           component={CustomSelect}
                           value={selectedService}
-                          setFieldValue={setFieldValue}
-                          serviceChangeHandler={(data: any) =>
-                            serviceChangeHandler(data, setFieldValue)
-                          }
+                          setFieldValue={values.service}
+                          serviceChangeHandler={handleChange}
+                        /> */}
+
+                        <CustomSelect 
+                          name="service"
+                          onChange={handleChange}
+                          value={values.service}
                         />
+
                       </AntForm.Item>
                     </Col>
                   </Row>
@@ -176,12 +171,7 @@ export default function Services() {
                   <Row>
                     <Col md={{ span: 12 }} xs={{ span: 12 }} style={{ paddingRight: "5px" }}>
                       <AntForm.Item
-                        // label={
-                        //   "Label"
-                        // }
-                        // hasFeedback={!!touched?.nic && !!errors?.nic}
                         required
-                        // help={touched?.nic && errors?.nic ? errors.nic : ''}
                         help={
                           touched.consumerUid && errors.consumerUid
                             ? errors.consumerUid.toString()
@@ -196,17 +186,19 @@ export default function Services() {
                           placeholder={"Date"}
                           maxLength="32"
                         /> */}
-                        <DatePicker onChange={datePickerHandler} />
+                        {/* <DatePicker onChange={datePickerHandler} /> */}
+
+                        <CustomDatePicker 
+                          name="date"
+                          onChange={handleChange}
+                          value={values.date}
+                        />
+
                       </AntForm.Item>
                     </Col>
                     <Col md={{ span: 12 }} xs={{ span: 12 }} style={{ paddingLeft: "5px" }}>
                       <AntForm.Item
-                        // label={
-                        //   "Label"
-                        // }
-                        // hasFeedback={!!touched?.nic && !!errors?.nic}
                         required
-                        // help={touched?.nic && errors?.nic ? errors.nic : ''}
                         help={
                           touched.consumerUid && errors.consumerUid
                             ? errors.consumerUid.toString()
@@ -222,15 +214,23 @@ export default function Services() {
                           placeholder={"Time"}
                           // defaultOpenValue={moment('00:00:00', 'HH:mm:ss')}
                         /> */}
-                        <TimePicker
+                        {/* <TimePicker
                           onChange={timePickerHandler}
                           defaultValue={moment("00:00:00", "HH:mm:ss")}
+                        /> */}
+
+                        <CustomTimePicker 
+                          name='time'
+                          onChange={handleChange}
+                          value={values.time}
                         />
+
                       </AntForm.Item>
                     </Col>
                     <Col className="total">
-                      {selectedService && 
-                      (<h3>Total: USD {selectedService?.cost}</h3>)}
+                      {values.services !== '' && 
+                      (<h3>Total: USD {values.service}</h3>)}
+                      {/* (<h3>Total: USD {dropdownVal(values).cost}</h3>)} */}
                     </Col>
                   </Row>
 
