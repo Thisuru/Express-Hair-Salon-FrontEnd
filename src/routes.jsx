@@ -24,7 +24,7 @@ const routes = [
   },
   // ---------------Services---------
   {
-    path: "/services",
+    path: "/booking",
     layout: DetailLayout,
     exact: true,
     component: Views.ServicesView,
