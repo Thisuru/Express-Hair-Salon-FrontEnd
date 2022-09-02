@@ -59,14 +59,14 @@ export default function Services() {
     email: Yup.string().required("Required").max(32, "Maximum length exceed")
   });
 
-  const dropdownVal = (value : any) => {
+  // const dropdownVal = (values : any) => {
     
-    const obj = JSON.parse(value.service);
-    console.log("dropdownVal", obj);
-    console.log("label", obj.cost);
+  //   const obj = JSON.parse(values.service);
+  //   console.log("dropdownVal", obj);
+  //   console.log("label", obj.cost);
 
-    return obj.cost;
-  }
+  //   return obj.cost;
+  // }
 
 
   return (
@@ -87,8 +87,8 @@ export default function Services() {
           onSubmit={(values: any, props) => {
             console.log("🚀 ~ All Form Value Obj", values);
 
-            dropdownVal(values)
-            // submitHandler(values);
+            // dropdownVal(values)
+            submitHandler(values);
           }}>
             
           {({ errors, touched, values, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
@@ -228,8 +228,7 @@ export default function Services() {
                       </AntForm.Item>
                     </Col>
                     <Col className="total">
-                      {values.services !== '' && 
-                      (<h3>Total: USD {values.service}</h3>)}
+                      {values !== '' && (<h3>Total: USD {values.service}</h3>)}
                       {/* (<h3>Total: USD {dropdownVal(values).cost}</h3>)} */}
                     </Col>
                   </Row>

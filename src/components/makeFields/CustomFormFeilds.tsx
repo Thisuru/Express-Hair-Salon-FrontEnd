@@ -26,9 +26,9 @@ export const CustomNumberInput = ({
 };
 
 const SalonServices = [
-  { label: "Hair", value: '{"name":"Hair","cost":20}'},
-  { label: "Facial", value: '{"name":"Facial","cost":25}'},
-  { label: "CleanUp", value: '{"name":"CleanUp","cost":30}'},
+  { label: "Hair", value: 20},
+  { label: "Facial", value: 25},
+  { label: "CleanUp", value: 30},
 ];
 
 export const CustomSelect = ({

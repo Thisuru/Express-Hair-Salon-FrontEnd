@@ -1,4 +1,4 @@
-import { Route, withRouter, Switch } from "react-router-dom";
+import { Route, withRouter, Switch, useParams } from "react-router-dom";
 
 // layouts
 import DefaultLayout from "./layouts/DefaultLayout";
