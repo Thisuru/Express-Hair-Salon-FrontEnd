@@ -14,6 +14,7 @@ import axios from "axios";
 import { useState } from "react";
 import HTTPClient from "../../utils/HTTPClient";
 import { BOOKING } from "../../utils/EndPoints";
+import StripeCheckoutButton from "../../components/StripeCheckoutButton";
 
 export default function Services() {
   // const [selectedService, setSelectedService] = useState<any>(null);
@@ -88,7 +89,7 @@ export default function Services() {
             console.log("🚀 ~ All Form Value Obj", values);
 
             // dropdownVal(values)
-            submitHandler(values);
+            // submitHandler(values);
           }}>
             
           {({ errors, touched, values, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
@@ -236,14 +237,15 @@ export default function Services() {
                   <Row>
                     <Col span={24}>
                       <AntForm.Item>
-                        <CustomButton
+                        {/* <CustomButton
                           buttonStyle="btn--primary"
                           otherClasses="btn-pay"
                           htmlType="submit"
                           // onClick={submitHandler}
                         >
                           Pay Now
-                        </CustomButton>
+                        </CustomButton> */}
+                        <StripeCheckoutButton serviceAmount={values.service} serviceEmail={values.email}/>
                       </AntForm.Item>
                     </Col>
                   </Row>

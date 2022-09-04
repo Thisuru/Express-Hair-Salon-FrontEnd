@@ -2,7 +2,7 @@ import "./AboutUs.css";
 
 function AboutUs() {
   return (
-    <div className="about-us-container">
+    <div className="about-us-container" id="about">
       <div className="about-us-title">About us</div>
       <p className="about-us-para_1">
         Named “Best Salon” by Main Line Magazine & The Philadelphia Inquirer, Prauge Salon & Style

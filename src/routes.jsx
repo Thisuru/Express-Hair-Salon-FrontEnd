@@ -45,7 +45,7 @@ const routes = [
   // },
   // ---------------ServiceDetails---------
   {
-    path: "/serviceDetails",
+    path: "/serviceDetails/:serviceTypeId",
     layout: DetailLayout,
     exact: true,
     component: Views.ServiceDetailsView,

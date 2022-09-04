@@ -3,7 +3,7 @@ import CardItem from "./CardItem";
 
 function Services() {
   return (
-    <div className="services-area">
+    <div className="services-area" id="services">
       <h1>Services</h1>
       <div className="services-area__container">
         <div className="services-area__wrapper">
@@ -27,21 +27,21 @@ function Services() {
               title="Haircut"
               text="Set Sail in the Atlantic Ocean visiting Uncharted Waters"
               label="Mystery"
-              path="/serviceDetails"
+              path="/serviceDetails/1"
             />
             <CardItem
               src="images/img_svs_2.svg"
               title="Hair Styling"
               text="Experience Football on Top of the Himilayan Mountains"
               label="Adventure"
-              path="/serviceDetails"
+              path="/serviceDetails/2"
             />
             <CardItem
               src="images/img_svs_3.svg"
               title="Makeup"
               text="Ride through the Sahara Desert on a guided camel tour"
               label="Adrenaline"
-              path="/serviceDetails"
+              path="/serviceDetails/3"
             />
           </ul>
         </div>

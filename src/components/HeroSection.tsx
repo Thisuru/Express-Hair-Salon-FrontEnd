@@ -30,7 +30,7 @@ function HeroSection() {
           </div>
         </Col>
         <Col className="gutter-row" xs={24} sm={24} md={12} lg={12} xl={12}>
-          <div>col-6</div>
+          {/* <div>col-6</div> */}
         </Col>
       </Row>
     </div>

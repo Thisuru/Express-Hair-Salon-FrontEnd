@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { CustomButton } from "./CustomButton";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+  const history = useHistory();
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -17,6 +18,10 @@ function Navbar() {
       setButton(true);
     }
   };
+
+  const bookingNavigateHandler = () => {
+    history.push('/booking')
+  }
 
   useEffect(() => {
     showButton();
@@ -41,14 +46,20 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/about" className="nav-links" onClick={closeMobileMenu}>
+              {/* <Link to="/about" className="nav-links" onClick={closeMobileMenu}>
                 About
-              </Link>
+              </Link> */}
+              <a href="/#about" className="nav-links">
+                About
+              </a>
             </li>
             <li className="nav-item">
-              <Link to="/services" className="nav-links" onClick={closeMobileMenu}>
+              {/* <Link to="/services" className="nav-links" onClick={closeMobileMenu}>
                 Services
-              </Link>
+              </Link> */}
+              <a href="/#services" className="nav-links">
+                Services
+              </a>
             </li>
 
             <li className="nav-item">
@@ -62,7 +73,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {CustomButton && <CustomButton buttonStyle="btn--primary" otherClasses="btn-booking">Booking</CustomButton>}
+          {CustomButton && <CustomButton buttonStyle="btn--primary" otherClasses="btn-booking" onClick={bookingNavigateHandler}>Booking</CustomButton>}
         </div>
       </nav>
     </>
