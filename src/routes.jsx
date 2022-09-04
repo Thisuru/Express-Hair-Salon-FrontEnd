@@ -50,6 +50,15 @@ const routes = [
     exact: true,
     component: Views.ServiceDetailsView,
   },
+
+  // ---------------ThankYouPage---------
+  {
+    path: "/thankyou",
+    layout: DefaultLayout,
+    exact: true,
+    component: Views.ThankYouView,
+  },
+
   //   //should be last one
   //   {
   //     layout: PageNotFoundLayout,

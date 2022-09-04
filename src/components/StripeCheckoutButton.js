@@ -5,6 +5,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
+import './StripeCheckoutButton.css'
 
 const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
 
@@ -55,7 +56,7 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
         console.log("Email sent Status code: ", response.status)
     
         if (response.status === 200) {
-          history.push('/')
+          history.push('/thankyou')
           toast("Success! Check email for details", { type: "success" });
         } else {
           toast("Something went wrong", { type: "error" });
@@ -65,6 +66,7 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
     return(
         <div className="form-group container">
             <StripeCheckout
+              className="center"
               stripeKey="pk_test_51JnOKCEuRCvzOUPDmfg4gAGSf5nhzglf2ok7UyPCXxP0WQt4PyZ3dpCBFkuoLshX0Cp576XfWSK8MoAJm8WfvGRF00SkZKOLr0"
               token={handleToken}
               amount={product.price* 100}
