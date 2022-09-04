@@ -2,17 +2,19 @@ import { Col, Row } from "antd";
 import "../../App.css";
 import { CustomButton } from "../../components/CustomButton";
 import "../../components/HeroSection.css";
-import { useParams} from 'react-router-dom';
+import { useParams, useHistory} from 'react-router-dom';
 import { services } from "../../utils/Constants";
 
 
 export default function ServiceDetails() {
+  const history = useHistory();
 
   const params:any = useParams()
   console.log("params: ", params);
   
   const makeReserve = () => {
     console.log('Make Reservation button clicked');
+    history.push('/booking')
   }
 
   const serviceID = +params?.serviceTypeId || 1
@@ -32,7 +34,7 @@ export default function ServiceDetails() {
                 Attending advanced education allows us to keep up with the latest trends and provide
                 each guest with a unique & customizable result. For your convenience, Schedule your
                 reservation today! */}
-                {services[serviceID - 1]?.description}
+                {services[serviceID - 1]?.description}  
               </p>
               <CustomButton
                 className="btn"

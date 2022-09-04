@@ -2,8 +2,16 @@ import { Col, Row } from "antd";
 import "../App.css";
 import { CustomButton } from "./CustomButton";
 import "./HeroSection.css";
+import { useHistory } from "react-router-dom";
 
 function HeroSection() {
+
+  const history = useHistory();
+
+  const bookingNavigateHandler = () => {
+    history.push('/booking')
+  }
+
   return (
     <div className="hero-container">
       <Row style={{ height: "100%" }}>
@@ -22,7 +30,7 @@ function HeroSection() {
                 className="btn"
                 buttonStyle="btn--outline"
                 buttonSize="btn--medium"
-                onClick={console.log("hey")}
+                onClick={() => bookingNavigateHandler()}
                 otherClasses="left-side-area-btn">
                 Book now
               </CustomButton>
