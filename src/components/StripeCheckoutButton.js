@@ -15,7 +15,7 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
         name: "CleanUp",
         price: 500,
         description: "This is about Hair Cut",
-        email: "raxewaj957@xitudy.com"
+        email: "vopiyop985@vasqa.com"
     });
 
     const giveServiceName = (serviceAmount) => {
@@ -37,13 +37,26 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
           { token, product }
         );
 
-        // const response = await HTTPClient.post(CHECKOUT, { token });
-    
         console.log(response.status)
     
         if (response.status === 200) {
+          // toast("Success! Check email for details", { type: "success" });
+          sendEmail(product.email)
+        } else {
+          toast("Something went wrong", { type: "error" });
+        }
+      }
+
+      async function sendEmail(email) {
+        const response = await axios.post(
+          "http://localhost:5000/sendemail",
+          { email }
+        );
+        console.log("Email sent Status code: ", response.status)
+    
+        if (response.status === 200) {
+          history.push('/')
           toast("Success! Check email for details", { type: "success" });
-          // history.push('/')
         } else {
           toast("Something went wrong", { type: "error" });
         }
