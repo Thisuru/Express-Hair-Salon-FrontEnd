@@ -4,16 +4,18 @@ import { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useHistory } from "react-router-dom";
 
 const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
 
   // toast.configure();
+    const history = useHistory();
 
-    const [product] = useState({
-        name: "Hair",
-        // price: 360,
-        description: "This is a sample book",
-        // email: "mites64743@ulforex.com"
+    const [product, setProduct] = useState({
+        name: "CleanUp",
+        price: 500,
+        description: "This is about Hair Cut",
+        email: "raxewaj957@xitudy.com"
     });
 
     const giveServiceName = (serviceAmount) => {
@@ -34,11 +36,14 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
           "http://localhost:5000/checkout",
           { token, product }
         );
+
+        // const response = await HTTPClient.post(CHECKOUT, { token });
     
         console.log(response.status)
     
         if (response.status === 200) {
           toast("Success! Check email for details", { type: "success" });
+          // history.push('/')
         } else {
           toast("Something went wrong", { type: "error" });
         }
@@ -49,9 +54,9 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
             <StripeCheckout
               stripeKey="pk_test_51JnOKCEuRCvzOUPDmfg4gAGSf5nhzglf2ok7UyPCXxP0WQt4PyZ3dpCBFkuoLshX0Cp576XfWSK8MoAJm8WfvGRF00SkZKOLr0"
               token={handleToken}
-              amount={serviceAmount * 100}
-              name={giveServiceName(serviceAmount)}
-              email={serviceEmail}
+              amount={product.price* 100}
+              name={product.name}
+              email={product.email}
               billingAddress
               shippingAddress
             />

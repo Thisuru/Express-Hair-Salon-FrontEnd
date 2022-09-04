@@ -8,10 +8,10 @@ import {
   CustomTimePicker
 } from "../../components/makeFields/CustomFormFeilds";
 import * as Yup from "yup";
-import moment from "moment";
-import { CustomButton } from "../../components/CustomButton";
-import axios from "axios";
-import { useState } from "react";
+// import moment from "moment";
+// import { CustomButton } from "../../components/CustomButton";
+// import axios from "axios";
+// import { useState } from "react";
 import HTTPClient from "../../utils/HTTPClient";
 import { BOOKING } from "../../utils/EndPoints";
 import StripeCheckoutButton from "../../components/StripeCheckoutButton";
