@@ -1,6 +1,6 @@
 import '../App.css'
 import StripeCheckout from "react-stripe-checkout";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +12,15 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
   // toast.configure();
     const history = useHistory();
 
+    useEffect(() => {
+      setProduct({
+        ...product,
+        price: serviceAmount,
+        email:serviceEmail,
+        name:giveServiceName(serviceAmount)
+      })
+    }, [serviceAmount, serviceEmail]);
+
     const [product, setProduct] = useState({
         name: "CleanUp",
         price: 500,
@@ -22,11 +31,11 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
     const giveServiceName = (serviceAmount) => {
       var serviceName = ''
       if(serviceAmount === 20){
-        serviceName = 'Hair'
+        serviceName = 'Haircut'
       } else if (serviceAmount === 25){
-        serviceName = 'Facial'
+        serviceName = 'Hair Styling'
       } else {
-        serviceName = 'CleanUp'
+        serviceName = 'Makeup'
       }
 
       return serviceName;

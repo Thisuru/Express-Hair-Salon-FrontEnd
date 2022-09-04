@@ -25,22 +25,22 @@ function Services() {
             <CardItem
               src="images/img_svs_1.svg"
               title="Haircut"
-              text="Set Sail in the Atlantic Ocean visiting Uncharted Waters"
-              label="Mystery"
+              text="Lorem ipsum dolor sit amet, conse adipiscing incididunt ut Haircut."
+              label="Haircut"
               path="/serviceDetails/1"
             />
             <CardItem
               src="images/img_svs_2.svg"
               title="Hair Styling"
-              text="Experience Football on Top of the Himilayan Mountains"
-              label="Adventure"
+              text="Lorem ipsum dolor sit amet, conse adipiscing incididunt ut Hair Styling."
+              label="Styling"
               path="/serviceDetails/2"
             />
             <CardItem
               src="images/img_svs_3.svg"
               title="Makeup"
-              text="Ride through the Sahara Desert on a guided camel tour"
-              label="Adrenaline"
+              text="Lorem ipsum dolor sit amet, conse adipiscing incididunt ut Makeup."
+              label="Makeup"
               path="/serviceDetails/3"
             />
           </ul>
