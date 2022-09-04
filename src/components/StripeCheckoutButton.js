@@ -10,11 +10,24 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
   // toast.configure();
 
     const [product] = useState({
-        name: "Hair Style",
-        price: 360,
+        name: "Hair",
+        // price: 360,
         description: "This is a sample book",
-        email: "mites64743@ulforex.com"
+        // email: "mites64743@ulforex.com"
     });
+
+    const giveServiceName = (serviceAmount) => {
+      var serviceName = ''
+      if(serviceAmount === 20){
+        serviceName = 'Hair'
+      } else if (serviceAmount === 25){
+        serviceName = 'Facial'
+      } else {
+        serviceName = 'CleanUp'
+      }
+
+      return serviceName;
+    }
 
     async function handleToken(token, addresses) {
         const response = await axios.post(
@@ -37,7 +50,7 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
               stripeKey="pk_test_51JnOKCEuRCvzOUPDmfg4gAGSf5nhzglf2ok7UyPCXxP0WQt4PyZ3dpCBFkuoLshX0Cp576XfWSK8MoAJm8WfvGRF00SkZKOLr0"
               token={handleToken}
               amount={serviceAmount * 100}
-              name={product.name}
+              name={giveServiceName(serviceAmount)}
               email={serviceEmail}
               billingAddress
               shippingAddress

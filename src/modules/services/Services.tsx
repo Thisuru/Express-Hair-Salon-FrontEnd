@@ -69,7 +69,6 @@ export default function Services() {
   //   return obj.cost;
   // }
 
-
   return (
     <div className="salonServices">
       <div className="form-container">
