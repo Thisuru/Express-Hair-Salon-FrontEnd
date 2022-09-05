@@ -228,7 +228,7 @@ export default function Services() {
                       </AntForm.Item>
                     </Col>
                     <Col className="total">
-                      {values !== '' && (<h3>Total: USD {values.service}</h3>)}
+                      {values.service !== '' && (<h3>Total: USD {values.service}</h3>)}
                       {/* (<h3>Total: USD {dropdownVal(values).cost}</h3>)} */}
                     </Col>
                   </Row>
