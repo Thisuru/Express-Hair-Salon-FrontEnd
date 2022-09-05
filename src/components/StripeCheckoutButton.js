@@ -17,7 +17,8 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
         ...product,
         price: serviceAmount,
         email:serviceEmail,
-        name:giveServiceName(serviceAmount)
+        name:giveServiceName(serviceAmount),
+        imageUrl: selectImage(serviceAmount)
       })
     }, [serviceAmount, serviceEmail]);
 
@@ -25,7 +26,8 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
         name: "CleanUp",
         price: 500,
         description: "This is about Hair Cut",
-        email: "vopiyop985@vasqa.com"
+        email: "vopiyop985@vasqa.com",
+        imageUrl:"https://svgshare.com/i/CUz.svg"
     });
 
     const giveServiceName = (serviceAmount) => {
@@ -41,6 +43,19 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
       return serviceName;
     }
 
+    const selectImage = (serviceAmount) => {
+      var imageUrl = ''
+      if(serviceAmount === 20){
+        imageUrl = 'images/img_svs_1.svg'
+      } else if (serviceAmount === 25){
+        imageUrl = 'images/img_svs_2.svg'
+      } else {
+        imageUrl = 'images/img_svs_3.svg'
+      }
+
+      return imageUrl;
+    }
+
     async function handleToken(token, addresses) {
         const response = await axios.post(
           "http://localhost:5000/checkout",
@@ -48,8 +63,9 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
         );
 
         console.log(response.status)
-    
+        console.log("Response:::: ", response);
         if (response.status === 200) {
+         
           // toast("Success! Check email for details", { type: "success" });
           sendEmail(product.email)
         } else {
@@ -83,6 +99,9 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
               email={product.email}
               billingAddress
               shippingAddress
+              panelLabel="Pay Now"
+              image={product.imageUrl}
+
             />
             <ToastContainer />
         </div>

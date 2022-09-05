@@ -244,7 +244,8 @@ export default function Services() {
                         >
                           Pay Now
                         </CustomButton> */}
-                        {(values.service && values.email) && (<StripeCheckoutButton serviceAmount={values.service} serviceEmail={values.email}/>)}
+                        {(values.service && values.email && values.date && values.firstName && values.lastName && values.time) && 
+                        (<StripeCheckoutButton serviceAmount={values.service} serviceEmail={values.email}/>)}
                       </AntForm.Item>
                     </Col>
                   </Row>
