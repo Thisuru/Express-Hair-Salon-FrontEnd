@@ -60,7 +60,7 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
       async function sendEmail(email) {
         const response = await axios.post(
           "http://localhost:5000/sendemail",
-          { email }
+          { email, product }
         );
         console.log("Email sent Status code: ", response.status)
     

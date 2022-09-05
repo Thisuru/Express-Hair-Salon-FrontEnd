@@ -228,7 +228,7 @@ export default function Services() {
                       </AntForm.Item>
                     </Col>
                     <Col className="total">
-                      {values.service !== '' && (<h3>Total: USD {values.service}</h3>)}
+                      {values.service && (<h3>Total: USD {values.service}</h3>)}
                       {/* (<h3>Total: USD {dropdownVal(values).cost}</h3>)} */}
                     </Col>
                   </Row>
@@ -244,7 +244,7 @@ export default function Services() {
                         >
                           Pay Now
                         </CustomButton> */}
-                        <StripeCheckoutButton serviceAmount={values.service} serviceEmail={values.email}/>
+                        {(values.service && values.email) && (<StripeCheckoutButton serviceAmount={values.service} serviceEmail={values.email}/>)}
                       </AntForm.Item>
                     </Col>
                   </Row>
