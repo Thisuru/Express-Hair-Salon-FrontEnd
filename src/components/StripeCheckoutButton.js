@@ -63,10 +63,10 @@ const StripeCheckoutButton = ({serviceAmount, serviceEmail}) => {
         );
 
         console.log(response.status)
-        console.log("Response:::: ", response);
+
         if (response.status === 200) {
          
-          // toast("Success! Check email for details", { type: "success" });
+          toast("Success! Check email for details", { type: "success" });
           sendEmail(product.email)
         } else {
           toast("Something went wrong", { type: "error" });
