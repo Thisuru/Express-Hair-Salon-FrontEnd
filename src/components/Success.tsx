@@ -11,6 +11,9 @@ function Success() {
         fugiat nulla pariatur.
       </p>
       <p className="success-para_2"> For further information contact us</p>
+      <img className="success-mobileLogo" src="images/Thankyou/MobileIcon.svg" alt="" />
+      <p className="success-para_3"> (487) 1070 1087 </p>
+      <p className="success-para_4"> sales.salonprauge@sp.com </p>
     </div>
   );
 }

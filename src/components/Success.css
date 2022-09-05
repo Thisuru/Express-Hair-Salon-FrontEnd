@@ -51,4 +51,35 @@
     padding-left: 24%;
     padding-right: 24%;
   }
+
+  .success-para_3 {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 99%;
+    text-align: center;
+    letter-spacing: -0.03em;
+    color: #A5A5A5;
+    position: relative;
+    padding-top: 2%;
+    padding-left: 24%;
+    padding-right: 24%;
+  }
+
+  .success-para_4 {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 99%;
+    text-align: center;
+    letter-spacing: -0.03em;
+    color: #A5A5A5;
+    position: relative;
+    padding-top: 1%;
+    padding-left: 24%;
+    padding-right: 24%;
+  }
+
+  .success-mobileLogo {
+    margin-top: 2%;
+    margin-left: 48%;
+  }
   
